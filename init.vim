@@ -1,4 +1,3 @@
-
 " Setup dein  ---------------------------------------------------------------{{{
   if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
     call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
@@ -44,6 +43,7 @@
   call dein#add('AndrewRadev/switch.vim')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
   call dein#add('tpope/vim-surround')
   call dein#add('tomtom/tcomment_vim')
   call dein#add('mattn/emmet-vim')
@@ -84,13 +84,14 @@
   call dein#add('Shougo/vimfiler.vim')
   call dein#add('Shougo/unite.vim')
   call dein#add('junegunn/gv.vim')
-  call dein#add('mhartington/oceanic-next')
+  call dein#add('romainl/flattened')
   call dein#local('~/GitHub', {},['vim-folds'])
   call dein#local('~/GitHub', {},['nvim-typescript'])
   call dein#add('chemzqm/denite-git')
   call dein#add('sjl/vitality.vim')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+  call dein#add('mhartington/oceanic-next')
 " google auto format code
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
@@ -234,6 +235,8 @@
 "}}}"
 " Themes, Commands, etc  ----------------------------------------------------{{{
   syntax on
+  let g:oceanic_next_terminal_bold = 1
+  let g:oceanic_next_terminal_italic = 1
   colorscheme OceanicNext
 "}}}
 " MarkDown ------------------------------------------------------------------{{{
@@ -313,6 +316,8 @@
 
   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
+  autocmd FileType java nnoremap <buffer> <F9> :te javac % && java %:r <cr>
+
 "}}}
 " HTML ----------------------------------------------------------------------{{{
   let g:neomake_html_enabled_makers = []
@@ -328,12 +333,15 @@
 
 "}}}
 " Python --------------------------------------------------------------------{{{
-  let g:python_host_prog = '/usr/bin/python'
+  let g:python_host_prog = '/usr/local/bin/python2'
   let g:python3_host_prog = '/usr/local/bin/python3'
   " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#documentation_command = "<leader>k"
   autocmd FileType python nnoremap <buffer> <F9> :te python3 %<cr>
+  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ % && ./a.out<cr>
+  autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
+  autocmd FileType sh nnoremap <buffer> <F10> :te ./%
 " }}}
 " Fold, gets it's own section  ----------------------------------------------{{{
 
@@ -728,7 +736,8 @@
   let g:airline#extensions#neomake#error_symbol='• '
   let g:airline#extensions#neomake#warning_symbol='•  '
   let g:airline_symbols.branch = ''
-  let g:airline_theme='oceanicnext'
+  let g:airline_theme='bubblegum'
+
   cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
   tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
   nmap <leader>t :term<cr>
@@ -773,3 +782,4 @@
   let g:neomake_warning_sign = {'text': '•'}
   let g:neomake_error_sign = {'text': '•'}
 "}}}
+"
