@@ -332,17 +332,24 @@
 " Lua -----------------------------------------------------------------------{{{
 
 "}}}
-" Python --------------------------------------------------------------------{{{
+" Python {{{
   let g:python_host_prog = '/usr/local/bin/python2'
   let g:python3_host_prog = '/usr/local/bin/python3'
   " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#documentation_command = "<leader>k"
   autocmd FileType python nnoremap <buffer> <F9> :te python3 %<cr>
-  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ % && ./a.out<cr>
   autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
   autocmd FileType sh nnoremap <buffer> <F10> :te ./%
 " }}}
+" C/C++ {{{
+  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ % && ./a.out<cr>
+  autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
+" }}}
+"Bash Shell{{{
+  autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
+  autocmd FileType sh nnoremap <buffer> <F10> :te ./%
+"}}}
 " Fold, gets it's own section  ----------------------------------------------{{{
 
   function! MyFoldText() " {{{
