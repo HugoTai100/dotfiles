@@ -4,6 +4,8 @@
 <dict>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
@@ -165,14 +167,19 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>373 274 620 392 0 0 1366 745 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 1366 768 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>328 207 796 473 0 0 1366 745 </string>
+	<string>49 222 918 401 0 0 1366 745 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>598 78 570 377 0 0 1366 745 </string>
+	<string>0 38 1366 707 0 0 1366 745 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1479,7 +1486,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>80166DBF-9413-4828-9984-06419729E65A</string>
 	<key>NoSyncLastTipTime</key>
-	<real>529404869.597175</real>
+	<real>529599062.92713302</real>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -1492,6 +1499,8 @@
 		<string>0002</string>
 		<string>0003</string>
 		<string>0004</string>
+		<string>0005</string>
+		<string>0006</string>
 	</array>
 	<key>OpenBookmark</key>
 	<false/>
@@ -1539,7 +1548,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-10-11T08:54:28Z</date>
+	<date>2017-10-13T14:51:03Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>WordCharacters</key>
