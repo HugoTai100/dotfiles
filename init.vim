@@ -3,7 +3,6 @@
     call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
     call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
   endif
-
   set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
   call dein#begin(expand('~/.config/nvim'))
   call dein#add('Shougo/dein.vim')
