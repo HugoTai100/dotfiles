@@ -322,15 +322,6 @@
   let g:neomake_html_enabled_makers = []
 
 " }}}
-" Go ------------------------------------------------------------------------{{{
-
-"}}}
-" CSS -----------------------------------------------------------------------{{{
-
-"}}}
-" Lua -----------------------------------------------------------------------{{{
-
-"}}}
 " Python {{{
   let g:python_host_prog = '/usr/local/bin/python2'
   let g:python3_host_prog = '/usr/local/bin/python3'
@@ -345,7 +336,7 @@
   autocmd FileType cpp nnoremap <buffer> <F9> :te g++ % && ./a.out<cr>
   autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
 " }}}
-"Bash Shell{{{
+" Bash Shell{{{
   autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
   autocmd FileType sh nnoremap <buffer> <F10> :te ./%
 "}}}
