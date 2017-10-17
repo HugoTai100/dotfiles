@@ -490,15 +490,12 @@
   autocmd TermOpen * set bufhidden=hide
 
 " }}}
-" Vim-Devicons -------------------------------------------------------------0{{{
-
+" Vim-Devicons {{{
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = ''
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vim'] = ''
-
 " }}}
-" Code formatting -----------------------------------------------------------{{{
-
+" Code formatting {{{
 " ,f to format code, requires formatters: read the docs
   noremap <silent> <leader>f :Neoformat<CR>
 
