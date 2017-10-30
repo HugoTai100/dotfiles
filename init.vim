@@ -311,14 +311,14 @@
       \ 'constructor': '',
       \}
 " }}}
-" Java ----------------------------------------------------------------------{{{
+" Java {{{
 
   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
   autocmd FileType java nnoremap <buffer> <F9> :te javac % && java %:r <cr>
 
 "}}}
-" HTML ----------------------------------------------------------------------{{{
+" HTML {{{
   let g:neomake_html_enabled_makers = []
 
 " }}}
@@ -488,6 +488,8 @@
 " Code formatting {{{
 " ,f to format code, requires formatters: read the docs
   noremap <silent> <leader>f :Neoformat<CR>
+  noremap <silent> <leader>f :Neoformat<CR>
+
 
 " }}}
 " Snipppets -----------------------------------------------------------------{{{
