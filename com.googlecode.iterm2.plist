@@ -176,9 +176,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>124 292 918 452 0 0 1920 1057 </string>
+	<string>514 357 918 401 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>882 103 585 377 0 0 1920 1057 </string>
+	<string>935 0 929 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1010 157 1005 750 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -759,7 +759,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>UbuntuMonoNerdFontCM-Regular 14</string>
+			<string>UbuntuMonoNerdFontCM-Regular 16</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1540,7 +1540,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-10-27T13:25:27Z</date>
+	<date>2017-10-29T13:42:13Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>WordCharacters</key>
