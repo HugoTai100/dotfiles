@@ -333,7 +333,7 @@
   autocmd FileType sh nnoremap <buffer> <F10> :te ./%
 " }}}
 " C/C++ {{{
-  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ % && ./a.out<cr>
+  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++11 -O3 % && ./a.out<cr>
   autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
 " }}}
 " Bash Shell{{{
