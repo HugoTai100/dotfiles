@@ -108,7 +108,6 @@
 
 " }}}
 " System Settings  ----------------------------------------------------------{{{
-" source ~/.local.vim
 " Neovim Settings
   set termguicolors
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -150,7 +149,6 @@
   set shortmess=atIc
   set isfname-==
   set spell
-
 " }}}
 " System mappings  ----------------------------------------------------------{{{
 " No need for ex mode
@@ -722,9 +720,9 @@
   cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
   tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
   nmap <leader>t :term<cr>
-  nmap <leader>, :bnext<CR>
+  nmap <leader>. :bnext<CR>
   tmap <leader>, <C-\><C-n>:bnext<cr>
-  nmap <leader>. :bprevious<CR>
+  nmap <leader>m :bprevious<CR>
   tmap <leader>. <C-\><C-n>:bprevious<CR>
   tmap <leader>1  <C-\><C-n><Plug>AirlineSelectTab1
   tmap <leader>2  <C-\><C-n><Plug>AirlineSelectTab2
