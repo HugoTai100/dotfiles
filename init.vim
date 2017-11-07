@@ -110,6 +110,8 @@
 " System Settings  ----------------------------------------------------------{{{
 " Neovim Settings
   set termguicolors
+  set cursorline
+  set cursorcolumn
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set clipboard+=unnamedplus
   set pastetoggle=<f6>
@@ -761,4 +763,3 @@
   let g:neomake_warning_sign = {'text': '•'}
   let g:neomake_error_sign = {'text': '•'}
 "}}}
-"
