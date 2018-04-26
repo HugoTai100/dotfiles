@@ -109,6 +109,7 @@
 " }}}
 " System Settings  ----------------------------------------------------------{{{
 " Neovim Settings
+  set scrolloff=5
   set termguicolors
   set cursorline
   set cursorcolumn
