@@ -21,7 +21,7 @@
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('nelstrom/vim-markdown-folding', {'on_ft': 'markdown'})
   call dein#add('rhysd/vim-grammarous')
-  call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
+  call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python3'})
   call dein#add('tmux-plugins/vim-tmux')
   call dein#add('itmammoth/doorboy.vim')
   call dein#add('valloric/MatchTagAlways', {'on_ft': 'html'})
@@ -52,7 +52,7 @@
   call dein#add('Shougo/deol.nvim')
 
   call dein#add('Shougo/denite.nvim')
-  " call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('ctrlpvim/ctrlp.vim')
 
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/context_filetype.vim')
@@ -65,7 +65,7 @@
   call dein#add('ujihisa/neco-look')
   call dein#add('davidhalter/jedi-vim', {'on_ft': 'python3'})
   call dein#add('zchee/deoplete-jedi')
-  call dein#add('zchee/nvim-go', {'build': 'gb build', 'on_ft': 'go'})
+ "call dein#add('zchee/nvim-go', {'build': 'gb build', 'on_ft': 'go'})
   call dein#add('zchee/deoplete-go')
   call dein#add('junegunn/limelight.vim')
   call dein#add('Konfekt/FastFold')
@@ -109,10 +109,8 @@
 " }}}
 " System Settings  ----------------------------------------------------------{{{
 " Neovim Settings
-  set scrolloff=5
+  set scrolloff=99
   set termguicolors
-  set cursorline
-  set cursorcolumn
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set clipboard+=unnamedplus
   set pastetoggle=<f6>
@@ -178,8 +176,7 @@
   tmap <esc> <c-\><c-n><esc><cr>
 " exit insert, dd line, enter insert
   inoremap <c-d> <esc>ddi
-  inoremap jk <esc>
-  inoremap kj <esc>
+  inoremap fd <esc>
   noremap H ^
   noremap L g_
   noremap J 5j
@@ -324,18 +321,20 @@
 
 " }}}
 " Python {{{
-  let g:python_host_prog = '/usr/bin/python2'
-  let g:python3_host_prog = '/usr/bin/python3'
+  let g:python_host_prog = '/usr/local/bin/python2'
+  let g:python3_host_prog = '/usr/local/bin/python3'
   " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#documentation_command = "<leader>k"
   autocmd FileType python nnoremap <buffer> <F9> :te python3 %<cr>
+  autocmd FileType python nnoremap <buffer> <F18> :te python3 %<cr>
   autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
   autocmd FileType sh nnoremap <buffer> <F10> :te ./%
 " }}}
 " C/C++ {{{
   autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++11 -O3 % && ./a.out<cr>
   autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
+  autocmd FileType go nnoremap <buffer> <F9> :te go run %<cr>
 " }}}
 " Bash Shell{{{
   autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
@@ -692,9 +691,9 @@
     endif
   endfunction
 
-  function ExitHandle()
-    echom self
-  endfunction
+ "function ExitHandle()
+ "  echom self
+ "endfunction
 
   let s:menus.ionic = {
     \ 'description' : 'some rando ionic stuff',
@@ -764,3 +763,5 @@
   let g:neomake_warning_sign = {'text': '•'}
   let g:neomake_error_sign = {'text': '•'}
 "}}}
+" Go {{{
+" }}}
