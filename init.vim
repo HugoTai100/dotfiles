@@ -52,9 +52,7 @@
   call dein#add('Shougo/deol.nvim')
 
   call dein#add('Shougo/denite.nvim')
-  call dein#add('ctrlpvim/ctrlp.vim')
 
-  call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/context_filetype.vim')
   call dein#add('chemzqm/denite-git')
   call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
@@ -332,7 +330,7 @@
   autocmd FileType sh nnoremap <buffer> <F10> :te ./%
 " }}}
 " C/C++ {{{
-  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++11 -O3 % && ./a.out<cr>
+  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++14 -O3 % && ./a.out<cr>
   autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
   autocmd FileType go nnoremap <buffer> <F9> :te go run %<cr>
 " }}}
