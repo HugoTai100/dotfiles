@@ -8,13 +8,14 @@
   call dein#add('Shougo/dein.vim')
   call dein#add('haya14busa/dein-command.vim')
 " syntax
-  call dein#add('othree/html5.vim')
-  call dein#add('othree/yajs.vim')
-  call dein#add('othree/jsdoc-syntax.vim')
-  call dein#add('heavenshell/vim-jsdoc')
+  call dein#add('jaxbot/browserlink.vim')  " new
+" call dein#add('othree/html5.vim')
+" call dein#add('othree/yajs.vim')
+" call dein#add('othree/jsdoc-syntax.vim')
+" call dein#add('heavenshell/vim-jsdoc')
   call dein#add('elzr/vim-json')
   call dein#add('HerringtonDarkholme/yats.vim')
-  call dein#add('skwp/vim-html-escape')
+" call dein#add('skwp/vim-html-escape')
   call dein#add('hail2u/vim-css3-syntax')
   call dein#add('ap/vim-css-color')
   call dein#add('tpope/vim-markdown', {'on_ft': 'markdown'})
@@ -22,9 +23,8 @@
   call dein#add('nelstrom/vim-markdown-folding', {'on_ft': 'markdown'})
   call dein#add('rhysd/vim-grammarous')
   call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python3'})
-  call dein#add('tmux-plugins/vim-tmux')
   call dein#add('itmammoth/doorboy.vim')
-  call dein#add('valloric/MatchTagAlways', {'on_ft': 'html'})
+" call dein#add('valloric/MatchTagAlways', {'on_ft': 'html'})
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-rhubarb')
   call dein#add('chemzqm/vim-easygit')
@@ -109,6 +109,7 @@
 " Neovim Settings
   set scrolloff=99
   set termguicolors
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set clipboard+=unnamedplus
   set pastetoggle=<f6>
   set nopaste
@@ -245,71 +246,9 @@
   let g:neomake_markdown_enabled_makers = ['alex', 'proselint']
 
 "}}}
-" Javascript ----------------------------------------------------------------{{{
-
-  " let g:neoformat_enabled_javascript = ['prettier']
-  let g:neomake_javascript_enabled_makers = ['eslint']
-
-  let g:jsx_ext_required = 1
-  let g:jsdoc_allow_input_prompt = 1
-  let g:jsdoc_input_description = 1
-  let g:vim_json_syntax_conceal = 0
-  let g:tern#command = ['tern']
-  let g:tern#arguments = ['--persistent']
-
-  " let g:nvim_typescript#signature_complete=1
-  " let g:nvim_typescript#type_info_on_hold=1
-  " let g:nvim_typescript#max_completion_detail=100
-  "
-  let g:neomake_typescript_tsc_maker = {
-            \ 'append_file': 0,
-            \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
-            \ 'errorformat':
-            \   '%E%f %#(%l\,%c): error %m,' .
-            \   '%E%f %#(%l\,%c): %m,' .
-            \   '%Eerror %m,' .
-            \   '%C%\s%\+%m'
-            \}
-
-  let g:neomake_typescript_enabled_makers = ['tsc']
-  map <silent> <leader>gd :TSDoc <cr>
-  map <silent> <leader>gt :TSType <cr>
-  map <silent> <leader>@ :Denite -buffer-name=TSDocumentSymbol TSDocumentSymbol <cr>
-  " autocmd FileType typescript setl omnifunc=TSComplete
-  let g:nvim_typescript#kind_symbols = {
-      \ 'keyword': 'keyword',
-      \ 'class': '',
-      \ 'interface': 'interface',
-      \ 'script': 'script',
-      \ 'module': '',
-      \ 'local class': 'local class',
-      \ 'type': 'type',
-      \ 'enum': '',
-      \ 'enum member': '',
-      \ 'alias': '',
-      \ 'type parameter': 'type param',
-      \ 'primitive type': 'primitive type',
-      \ 'var': '',
-      \ 'local var': '',
-      \ 'property': '',
-      \ 'let': '',
-      \ 'const': '',
-      \ 'label': 'label',
-      \ 'parameter': 'param',
-      \ 'index': 'index',
-      \ 'function': '',
-      \ 'local function': 'local function',
-      \ 'method': '',
-      \ 'getter': '',
-      \ 'setter': '',
-      \ 'call': 'call',
-      \ 'constructor': '',
-      \}
-" }}}
 " Java {{{
 
   autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
   autocmd FileType java nnoremap <buffer> <F9> :te javac % && java %:r <cr>
 
 "}}}
@@ -319,7 +258,7 @@
 " }}}
 " Python {{{
   let g:python_host_prog = '/usr/local/bin/python2'
-  let g:python3_host_prog = '/usr/local/bin/python3'
+  let g:python3_host_prog = '/Users/he/anaconda3/bin/python'
   " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#documentation_command = "<leader>k"
@@ -329,14 +268,10 @@
   autocmd FileType sh nnoremap <buffer> <F10> :te ./%
 " }}}
 " C/C++ {{{
-  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++14 -O3 % && ./a.out<cr>
+  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++11 -O3 % && ./a.out<cr>
   autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
   autocmd FileType go nnoremap <buffer> <F9> :te go run %<cr>
 " }}}
-" Bash Shell{{{
-  autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
-  autocmd FileType sh nnoremap <buffer> <F10> :te ./%
-"}}}
 " Fold, gets it's own section  ----------------------------------------------{{{
 
   function! MyFoldText() " {{{
@@ -485,9 +420,6 @@
 " Code formatting {{{
 " ,f to format code, requires formatters: read the docs
   noremap <silent> <leader>f :Neoformat<CR>
-  noremap <silent> <leader>f :Neoformat<CR>
-
-
 " }}}
 " Snipppets -----------------------------------------------------------------{{{
 
@@ -705,6 +637,8 @@
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#right_sep = ''
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#mike#enabled = 0
   set hidden
