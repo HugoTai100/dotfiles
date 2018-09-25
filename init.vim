@@ -257,7 +257,7 @@
 " }}}
 " Python {{{
   let g:python_host_prog = '/usr/local/bin/python2'
-  let g:python3_host_prog = '/Users/he/anaconda3/bin/python'
+  let g:python3_host_prog = '/Users/his/.pyenv/shims/python3.7'
   " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#documentation_command = "<leader>k"
