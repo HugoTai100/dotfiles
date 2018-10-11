@@ -7,8 +7,12 @@
   call dein#begin(expand('~/.config/nvim'))
   call dein#add('Shougo/dein.vim')
   call dein#add('haya14busa/dein-command.vim')
+  call dein#add('neovimhaskell/haskell-vim')
 " syntax
+  call dein#add('altercation/vim-colors-solarized')
+  call dein#add('lervag/vimtex')
   call dein#add('jaxbot/browserlink.vim')  " new
+  call dein#add('JamshedVesuna/vim-markdown-preview')  " new
 " call dein#add('othree/html5.vim')
 " call dein#add('othree/yajs.vim')
 " call dein#add('othree/jsdoc-syntax.vim')
@@ -37,7 +41,7 @@
   call dein#add('Xuyuanp/nerdtree-git-plugin')
   call dein#add('tpope/vim-repeat')
   call dein#add('tpope/vim-unimpaired')
-  call dein#add('neomake/neomake', {'on_cmd': 'Neomake'})
+" call dein#add('neomake/neomake', {'on_cmd': 'Neomake'})
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('AndrewRadev/switch.vim')
 " call dein#add('christoomey/vim-tmux-navigator')
@@ -112,7 +116,6 @@
   set clipboard+=unnamedplus
   set pastetoggle=<f6>
   set nopaste
-  autocmd BufWritePre * %s/\s\+$//e
   set noshowmode
   set noswapfile
   filetype on
@@ -232,6 +235,8 @@
   let g:oceanic_next_terminal_bold = 1
   let g:oceanic_next_terminal_italic = 1
   colorscheme OceanicNext
+  set background=dark
+  colorscheme OceanicNext
 "}}}
 " MarkDown ------------------------------------------------------------------{{{
 
@@ -257,14 +262,14 @@
 " }}}
 " Python {{{
   let g:python_host_prog = '/usr/local/bin/python2'
-  let g:python3_host_prog = '/Users/his/.pyenv/shims/python3.7'
+  let g:python3_host_prog = '/usr/local/bin/python3'
   " let $NVIM_PYTHON_LOG_FILE='nvim-python.log'
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#documentation_command = "<leader>k"
   autocmd FileType python nnoremap <buffer> <F9> :te python3 %<cr>
   autocmd FileType python nnoremap <buffer> <F18> :te python3 %<cr>
-  autocmd FileType sh nnoremap <buffer> <F9> :te ./%<cr>
-  autocmd FileType sh nnoremap <buffer> <F10> :te ./%
+  autocmd FileType sh nnoremap <buffer> <F9> :te sh %<cr>
+  autocmd FileType sh nnoremap <buffer> <F10> :te sh %
 " }}}
 " C/C++ {{{
   autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++11 -O3 % && ./a.out<cr>
@@ -636,8 +641,6 @@
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
-  let g:airline#extensions#tabline#left_sep = ''
-  let g:airline#extensions#tabline#right_sep = ''
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#mike#enabled = 0
   set hidden
@@ -689,9 +692,60 @@
 
 "}}}
 " Linting -------------------------------------------------------------------{{{
-  autocmd! BufWritePost * Neomake
-  let g:neomake_warning_sign = {'text': '•'}
-  let g:neomake_error_sign = {'text': '•'}
+" autocmd! BufWritePost * Neomake
+" let g:neomake_warning_sign = {'text': '•'}
+" let g:neomake_error_sign = {'text': '•'}
 "}}}
 " Go {{{
 " }}}
+let vim_markdown_preview_toggle=3
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='Google Chrome'
+
+let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_manual = 1
+let g:vimtex_text_obj_enabled = 0
+let g:vimtex_imaps_enabled = 0
+let g:vimtex_motion_enabled = 1
+let g:vimtex_mappings_enabled = 0
+
+if has('macunix')
+    let g:vimtex_view_general_viewer
+                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+elseif has('unix')
+    let g:vimtex_view_general_viewer
+                \ = 'zathura'
+endif
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+
+" This adds a callback hook that updates Skim after compilation
+let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
+function! UpdateSkim(status)
+	if !a:status | return | endif
+
+	let l:out = b:vimtex.out()
+	let l:tex = expand('%:p')
+	let l:cmd = [g:vimtex_view_general_viewer, '-r']
+	if !empty(system('pgrep Skim'))
+		call extend(l:cmd, ['-g'])
+	endif
+	if has('nvim')
+		call jobstart(l:cmd + [line('.'), l:out, l:tex])
+	elseif has('job')
+		call job_start(l:cmd + [line('.'), l:out, l:tex])
+	else
+		call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
+	endif
+endfunction
+" Show trailing whitespace:
+highlight ExtraWhitespace ctermbg=red guibg=red
+highlight TheInt ctermbg=red guibg=green
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+autocmd BufWinEnter * match TheInt /Int/
+autocmd InsertEnter * match TheInt /Int/
+autocmd InsertLeave * match TheInt /Int/
+autocmd BufWinLeave * call clearmatches()
