@@ -1,16 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# gnupg settings
-export GPG_TTY=$(tty)
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/he/.oh-my-zsh
+export ZSH=/Users/his/.oh-my-zsh
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
-#ZSH_THEME="bullet-train"
+POWERLEVEL9K_MODE='nerdfont-complete'
+#ZSH_THEME="trapd00r"
+#ZSH_THEME="robbyrussell"
 #bullet-train settings
 
 # Set list of themes to load
@@ -43,7 +44,7 @@ HYPHEN_INSENSITIVE="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="false"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -67,8 +68,8 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  python
 )
-
 source $ZSH/oh-my-zsh.sh
 # User configuration
 
@@ -102,47 +103,79 @@ source $ZSH/oh-my-zsh.sh
 alias czrc="nvim ~/.zshrc"
 
 alias ls="ls -Ghp"
-GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-# anaconda3
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/he/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/he/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/he/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/he/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-export JAVA_HOME=$(/usr/libexec/java_home)
 # defaults write NSGlobalDomain KeyRepeat -float 0.03
 # defaults read-type NSGlobalDomain KeyRepeat; defaults read NSGlobalDomain KeyRepeat
-# added by Anaconda3 installer
-export PATH="$HOME/anaconda3/bin:$PATH"
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
-source /Users/he/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
 POWERLEVEL9K_DIR_PATH_ABSOLUTE=true
 POWERLEVEL9K_DIR_SHOW_WRITABLE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir newline anaconda rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs anaconda rbenv newline )
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery os_icon ram)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
-# anaconda
-POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=
+POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=' '
 POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0C1'
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0C0'
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/he/anaconda3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/he/anaconda3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/he/anaconda3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/he/anaconda3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-source ~/.cargo/env
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0B4'
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0B6'
+
 alias urldecode='python2 -c "import sys, urllib as ul;print ul.unquote_plus(sys.argv[1])"'
 alias nnvim='nvim -u ~/dotfiles/min.vim'
+export PATH="$PYENV_ROOT/shims:$PATH"
+export PATH="/Users/his/.local/bin:$HOME/Library/Haskell/bin:$PATH"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+eval "$(pipenv --completion)"
+
+glinux (){
+  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+  PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+  PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+  MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
+  PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+  MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:$MANPATH"
+  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+  MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+  PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+  export MANPATH
+  PS1="Linux toolchain
+$PS1"
+}
+
+xlinux (){
+  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/coreutils\/libexec\/gnubin://g'`
+  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-getopt\/bin://g'`
+  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/findutils\/libexec\/gnubin://g'`
+  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-tar\/libexec\/gnubin://g'`
+  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-sed\/libexec\/gnubin://g'`
+  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-getopt\/bin://g'`
+  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/coreutils\/libexec\/gnuman://g'`
+  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/findutils\/libexec\/gnuman://g'`
+  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/gnu-tar\/libexec\/gnuman://g'`
+  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/gnu-sed\/libexec\/gnuman://g'`
+  export MANPATH
+                
+  PS1=`echo $PS1|sed -e ':a' -e 'N' -e '$!ba' -e 's/Linux\ toolchain\n//g'`
+}
+gconda(){
+  PATH="/Users/his/miniconda3/bin:$PATH"
+}
+xconda(){
+  PATH=`echo $PATH|sed 's/\/Users\/his\/miniconda3\/bin://g'`
+}
+
+#--- dir color
+eval $(gdircolors /Users/his/.dircolors/dircolors-solarized/dircolors.256dark)
+
+# Aliases
+alias ls='gls --color=auto'
+alias ll='ls -al'
+#--- dir color
+alias pipy='pipenv run python'
+alias ql='quick-look'
+export GPG_TTY=$(tty)
