@@ -5,11 +5,19 @@
   endif
   set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
   call dein#begin(expand('~/.config/nvim'))
+" call dein#add('neoclide/coc.nvim')
+  call dein#add('Shougo/deoplete-clangx')
   call dein#add('Shougo/dein.vim')
+  call dein#add('floobits/floobits-neovim')
   call dein#add('haya14busa/dein-command.vim')
   call dein#add('neovimhaskell/haskell-vim')
+  call dein#add('fidian/hexmode')
+    call dein#add('autozimu/LanguageClient-neovim', {
+        \ 'rev': 'next',
+        \ 'build': 'bash install.sh',
+        \ })
 " syntax
-  call dein#add('altercation/vim-colors-solarized')
+  call dein#add('romainl/flattened')
   call dein#add('lervag/vimtex')
   call dein#add('jaxbot/browserlink.vim')  " new
   call dein#add('JamshedVesuna/vim-markdown-preview')  " new
@@ -50,7 +58,7 @@
   call dein#add('tomtom/tcomment_vim')
   call dein#add('mattn/emmet-vim')
   call dein#add('sbdchd/neoformat')
-" deoplete stuff
+" deoplete stuff#add
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/deol.nvim')
 
@@ -84,7 +92,6 @@
   call dein#add('Shougo/vimfiler.vim')
   call dein#add('Shougo/unite.vim')
   call dein#add('junegunn/gv.vim')
-  call dein#add('romainl/flattened')
   call dein#local('~/GitHub', {},['vim-folds'])
   call dein#local('~/GitHub', {},['nvim-typescript'])
   call dein#add('chemzqm/denite-git')
@@ -122,7 +129,7 @@
   set number
   set relativenumber
   set numberwidth=1
-  set tabstop=2 shiftwidth=2 expandtab
+  set tabstop=4 shiftwidth=4 expandtab
   set conceallevel=0
   set virtualedit=
   set wildmenu
@@ -150,6 +157,8 @@
   set shortmess=atIc
   set isfname-==
   set spell
+  set ignorecase          " ignore case when searching
+  set smartcase           " no ignorecase if Uppercase char present
 " }}}
 " System mappings  ----------------------------------------------------------{{{
 " No need for ex mode
@@ -157,7 +166,6 @@
   vnoremap // y/<C-R>"<CR>
 " recording macros
 " map q <Nop>
-  noremap . @
 " exit insert, dd line, enter insert
   inoremap <c-d> <esc>ddi
 " Navigate between display lines
@@ -176,11 +184,6 @@
   tmap <esc> <c-\><c-n><esc><cr>
 " exit insert, dd line, enter insert
   inoremap <c-d> <esc>ddi
-  inoremap fd <esc>
-  noremap H ^
-  noremap L g_
-  noremap J 5j
-  noremap K 5k
   noremap W <C-w>
 
 " this is the best, let me tell you why
@@ -190,7 +193,6 @@
 " if you do have a plugin that needs ;, you can just swap the mapping
 " nnoremap : ;
 " give it a try and you will like it
-  nnoremap ; :
   inoremap <c-f> <c-x><c-f>
 " Copy to osx clipboard
   vnoremap <C-c> "*y<CR>
@@ -231,12 +233,11 @@
 
 "}}}"
 " Themes, Commands, etc  ----------------------------------------------------{{{
-  syntax on
-  let g:oceanic_next_terminal_bold = 1
-  let g:oceanic_next_terminal_italic = 1
-  colorscheme OceanicNext
-  set background=dark
-  colorscheme OceanicNext
+    syntax on
+    set background=light
+    colorscheme OceanicNext
+    let g:oceanic_next_terminal_bold = 1
+    let g:oceanic_next_terminal_italic = 1
 "}}}
 " MarkDown ------------------------------------------------------------------{{{
 
@@ -272,8 +273,8 @@
   autocmd FileType sh nnoremap <buffer> <F10> :te sh %
 " }}}
 " C/C++ {{{
-  autocmd FileType cpp nnoremap <buffer> <F9> :te g++ -std=c++11 -O3 % && ./a.out<cr>
-  autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
+  autocmd FileType cpp nnoremap <buffer> <F9> :te g++-8 -std=c++17 -O3 '%' && ./a.out<cr>
+  autocmd FileType c nnoremap <buffer> <F9> :te gcc-8 % && ./a.out<cr>
   autocmd FileType go nnoremap <buffer> <F9> :te go run %<cr>
 " }}}
 " Fold, gets it's own section  ----------------------------------------------{{{
@@ -537,7 +538,7 @@
         \ 'prompt': ' @' ,
         \ 'reversed': 0,
         \})
-  call denite#custom#var('file_rec', 'command',['rg', '--threads', '2', '--files', '--glob', '!.git'])
+  call denite#custom#var('file_rec', 'command',['rg', '--threads', '4', '--files', '--glob', '!.git'])
   " call denite#custom#source('file_rec', 'vars', {
   "       \ 'command': [
   "       \ 'ag', '--follow','--nogroup','--hidden', '--column', '-g', '', '--ignore', '.git', '--ignore', '*.png'
@@ -650,8 +651,7 @@
   let g:airline#extensions#neomake#error_symbol='• '
   let g:airline#extensions#neomake#warning_symbol='•  '
   let g:airline_symbols.branch = ''
-  let g:airline_theme='bubblegum'
-
+  let g:airline_theme='oceanicnext'
   cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
   tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
   nmap <leader>t :term<cr>
@@ -698,6 +698,18 @@
 "}}}
 " Go {{{
 " }}}
+" LanguageClient {{{
+let g:LanguageClient_serverCommands = {
+    \ 'cpp': ['/usr/local/bin/cquery',
+    \ '--log-file=/User/his/.langserver/cq.log',
+    \ '--init={"cacheDirectory":"/User/his/.langserver/cquery/"}']
+    \ }
+" set cacheDirectory to /var/cquery may cause permission problem on linux
+" set it to /tmp/cquery/ can fix it
+" Use an absolute configuration path if you want system-wide settings
+let g:LanguageClient_settingsPath = '/home/his/.config/nvim/settings.json'
+" }}}
+
 let vim_markdown_preview_toggle=3
 let vim_markdown_preview_github=1
 let vim_markdown_preview_browser='Google Chrome'
@@ -745,7 +757,7 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-autocmd BufWinEnter * match TheInt /Int/
-autocmd InsertEnter * match TheInt /Int/
-autocmd InsertLeave * match TheInt /Int/
-autocmd BufWinLeave * call clearmatches()
+" autocmd BufWinEnter * match TheInt /Int/
+" autocmd InsertEnter * match TheInt /Int/
+" autocmd InsertLeave * match TheInt /Int/
+" autocmd BufWinLeave * call clearmatches()
