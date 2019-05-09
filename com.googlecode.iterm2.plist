@@ -415,17 +415,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1409 33 445 292 0 0 1920 1057 </string>
+	<string>1409 33 445 228 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 498 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>269 194 609 401 0 0 1920 1057 </string>
+	<string>269 194 606 469 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>638 545 796 486 0 0 1920 1057 </string>
+	<string>638 608 918 423 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 0 1914 1053 0 0 1920 1057 </string>
+	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>7 4 1913 1053 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -706,7 +706,7 @@
 				<real>0.072135128080844879</real>
 			</dict>
 			<key>Cursor Type</key>
-			<integer>1</integer>
+			<integer>2</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
@@ -1050,7 +1050,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>LigaPragmataProNerdFont 16</string>
+			<string>IosevkaNerdFontComplete-Term 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Open Toolbelt</key>
@@ -1128,7 +1128,7 @@
 			<key>Use Underline Color</key>
 			<true/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<real>1.0080007530120483</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -2609,6 +2609,10 @@
 	<string>F31E79DC-8BD7-4C5C-9B01-B3BB37D5F400</string>
 	<key>NoSyncLastTipTime</key>
 	<real>572779855.64892995</real>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncNewWindowOrTabFromTmuxOpensTmux</key>
 	<true/>
 	<key>NoSyncNewWindowOrTabFromTmuxOpensTmux_selection</key>
@@ -2743,7 +2747,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-03-05T18:15:55Z</date>
+	<date>2019-04-17T16:51:38Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>Secure Input</key>
