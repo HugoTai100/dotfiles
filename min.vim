@@ -3,7 +3,8 @@ set clipboard+=unnamedplus
 set relativenumber
 let mapleader = ","
 nmap <leader>w :w!<cr>
-
+map j gj
+map k gk
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null

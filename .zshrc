@@ -260,8 +260,15 @@ _yargs_completions()
 }
 ###-end-leetcode-completions-###
 export NNN_RESTRICT_NAV_OPEN=1
-export NNN_CONTEXT_COLORS='1234'
+export NNN_CONTEXT_COLORS='2341'
 export NNN_SCRIPT=/Users/his/.nnn/scripts
+export NNN_COPIER=/User/his/.nnn/copier
+export SELECTION=~/.config/nnn/.selection
 
 export PATH="/usr/local/opt/llvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export NNN_TMPFILE=/Users/his/.nnn/tempfile
+
+export VIDIR_EDITOR_ARGS='-u ~/dotfiles/min.vim'
+export NNN_OPENER=mpv
