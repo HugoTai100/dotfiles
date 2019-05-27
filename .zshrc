@@ -107,10 +107,10 @@ COMPLETION_WAITING_DOTS="false"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+. /Users/his/.nix-profile/etc/profile.d/nix.sh
 alias czrc="nvim ~/.zshrc"
 alias lt="leetcode"
 
-alias ls="ls -Ghp"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -137,7 +137,6 @@ export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="/Users/his/.local/bin:$HOME/Library/Haskell/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-eval "$(pipenv --completion)"
 
 glinux (){
   PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -178,11 +177,11 @@ xconda(){
 }
 
 #--- dir color
-eval $(gdircolors /Users/his/.dircolors/dircolors-solarized/dircolors.256dark)
+eval `dircolors /Users/his/.dircolors/dircolors-solarized/dircolors.256dark`
+
+eval "$(pipenv --completion)"
 
 # Aliases
-alias ls='gls --color=auto'
-alias ll='ls -al'
 #--- dir color
 alias pipy='pipenv run python'
 alias ql='quick-look'
@@ -195,7 +194,7 @@ sss(){
 bindkey -v
 export EDITOR="nvim"
 KEYTIMEOUT=1
-alias g=/usr/local/bin/git
+alias g=git
 
 bindkey '^P' up-history
 bindkey '^N' down-history
@@ -226,12 +225,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z_-}={A-Za-z-_}'
 zstyle ':completion:*' menu select
 alias ofd='open -a Finder .'
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/his/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/his/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/his/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/his/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ###-begin-leetcode-completions-###
 #
 # yargs command completion script
@@ -267,8 +260,13 @@ export SELECTION=~/.config/nnn/.selection
 
 export PATH="/usr/local/opt/llvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 export NNN_TMPFILE=/Users/his/.nnn/tempfile
 
 export VIDIR_EDITOR_ARGS='-u ~/dotfiles/min.vim'
 export NNN_OPENER=mpv
+source /Users/his/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias cp="/bin/cp -c"
+alias mpv="/usr/local/bin/mpv"
+
+alias enhance='function ne() { docker run --rm -v "$(pwd)":/ne/input -it alexjc/neural-enhance; }; ne'
+
