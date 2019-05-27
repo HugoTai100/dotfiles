@@ -273,8 +273,8 @@
   autocmd FileType sh nnoremap <buffer> <F10> :te sh %
 " }}}
 " C/C++ {{{
-  autocmd FileType cpp nnoremap <buffer> <F9> :te g++-8 -DHUGO -std=c++17 -O3 '%' && ./a.out<cr>
-  autocmd FileType c nnoremap <buffer> <F9> :te gcc-8 % && ./a.out<cr>
+  autocmd FileType cpp nnoremap <buffer> <F9> :te /usr/bin/g++ '%' && ./a.out<cr>
+  autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
   autocmd FileType go nnoremap <buffer> <F9> :te go run %<cr>
 " }}}
 " Fold, gets it's own section  ----------------------------------------------{{{
