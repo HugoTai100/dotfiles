@@ -107,7 +107,6 @@ COMPLETION_WAITING_DOTS="false"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. /Users/his/.nix-profile/etc/profile.d/nix.sh
 alias czrc="nvim ~/.zshrc"
 alias lt="leetcode"
 
@@ -175,9 +174,6 @@ gconda(){
 xconda(){
   PATH=`echo $PATH|sed 's/\/Users\/his\/miniconda3\/bin://g'`
 }
-
-#--- dir color
-eval `dircolors /Users/his/.dircolors/dircolors-solarized/dircolors.256dark`
 
 eval "$(pipenv --completion)"
 
@@ -265,8 +261,26 @@ export NNN_TMPFILE=/Users/his/.nnn/tempfile
 export VIDIR_EDITOR_ARGS='-u ~/dotfiles/min.vim'
 export NNN_OPENER=mpv
 source /Users/his/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-alias cp="/bin/cp -c"
-alias mpv="/usr/local/bin/mpv"
 
 alias enhance='function ne() { docker run --rm -v "$(pwd)":/ne/input -it alexjc/neural-enhance; }; ne'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/his/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/his/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/his/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/his/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
