@@ -40,3 +40,9 @@ set t_RV=               " http://bugs.debian.org/608242, http://groups.google.co
 setfiletype sh
 set background=light
 hi Visual  guifg=#000000 guibg=reverse gui=none
+
+" set tabsize to 4
+set ts=4
+set sts=4
+set sw=4
+set et 
