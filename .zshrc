@@ -132,61 +132,14 @@ POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0B6'
 
 alias urldecode='python2 -c "import sys, urllib as ul;print ul.unquote_plus(sys.argv[1])"'
 alias nim='nvim -u ~/dotfiles/min.vim'
-export PATH="$PYENV_ROOT/shims:$PATH"
-export PATH="/Users/his/.local/bin:$HOME/Library/Haskell/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
-glinux (){
-  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-  MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-  PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-  PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-  MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
-  PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-  MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:$MANPATH"
-  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-  MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
-  PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-  export MANPATH
-  PS1="Linux toolchain
-$PS1"
-}
-
-xlinux (){
-  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/coreutils\/libexec\/gnubin://g'`
-  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-getopt\/bin://g'`
-  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/findutils\/libexec\/gnubin://g'`
-  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-tar\/libexec\/gnubin://g'`
-  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-sed\/libexec\/gnubin://g'`
-  PATH=`echo $PATH|sed 's/\/usr\/local\/opt\/gnu-getopt\/bin://g'`
-  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/coreutils\/libexec\/gnuman://g'`
-  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/findutils\/libexec\/gnuman://g'`
-  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/gnu-tar\/libexec\/gnuman://g'`
-  MANPATH=`echo $MANPATH|sed 's/\/usr\/local\/opt\/gnu-sed\/libexec\/gnuman://g'`
-  export MANPATH
-
-  PS1=`echo $PS1|sed -e ':a' -e 'N' -e '$!ba' -e 's/Linux\ toolchain\n//g'`
-}
-gconda(){
-  PATH="/Users/his/miniconda3/bin:$PATH"
-}
-xconda(){
-  PATH=`echo $PATH|sed 's/\/Users\/his\/miniconda3\/bin://g'`
-}
-
-eval "$(pipenv --completion)"
-
 # Aliases
 #--- dir color
-alias pipy='pipenv run python'
 alias ql='quick-look'
 export GPG_TTY=$(tty)
 
-sss(){
-  cd ~/school/softwareeng/airsupply
-  pipenv shell
-}
 bindkey -v
 export EDITOR="nvim"
 KEYTIMEOUT=1
