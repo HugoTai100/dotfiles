@@ -118,17 +118,8 @@ export LANG=en_US.UTF-8
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
-
-POWERLEVEL9K_DIR_PATH_ABSOLUTE=true
-POWERLEVEL9K_DIR_SHOW_WRITABLE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user context dir vcs anaconda rbenv newline )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode battery os_icon ram)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
-POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=' '
-POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0B4'
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0B6'
 
 alias urldecode='python2 -c "import sys, urllib as ul;print ul.unquote_plus(sys.argv[1])"'
 alias nim='nvim -u ~/dotfiles/min.vim'
