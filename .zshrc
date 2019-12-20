@@ -2,13 +2,15 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export LC_ALL=en_US.UTF-8
 export ZSH="/Users/his/.oh-my-zsh"
-
+fpath+=("$HOME/.oh-my-zsh/themes/pure")
+autoload -U promptinit; promptinit
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="pure/pure"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +70,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode zsh-syntax-highlighting)
+plugins=(git vi-mode zsh-syntax-highlighting osx gpg-agent jsontools)
+#  
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,4 +102,32 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # GPG settings
-export GPG_TTY=$(tty)
+export NNN_OPENER=mpv
+export NNN_PLUG='q:_qlmanage -p $nnn;o:_open $nnn'
+# remove vim edit mode delay to 10ms
+KEYTIMEOUT=0
+export PATH="/Users/his/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Applications/VMware Fusion.app/Contents/Public:/Users/his/flutter/bin"
+
+
+eval "$(direnv hook zsh)"
+
+function jobgit(){
+    git config user.signingkey F7AC78E18BADD5F7005E76834E8D13646E9597A2
+    git config user.name hypertai
+    git config user.email hugo.tai101@gmail.com
+}
+export EDITOR="nvim -u ~/.config/nvim_back/basic.vim"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+alias python=python3
+export PATH="$PATH":"$HOME/.pub-cache/bin:/Library/TeX/texbin"
+alias n=nnn
+alias nv="nvim -u ~/.config/nvim_back/basic.vim"
+
+
+# Load pyenv automatically by appending
+# the following to ~/.zshrc:
+
+eval "$(pyenv init -)"

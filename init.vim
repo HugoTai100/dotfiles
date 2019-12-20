@@ -6,6 +6,7 @@
   set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
   call dein#begin(expand('~/.config/nvim'))
 " call dein#add('neoclide/coc.nvim')
+  call dein#add('mcchrish/nnn.vim') "nnn file manager
   call dein#add('Shougo/deoplete-clangx')
   call dein#add('Shougo/dein.vim')
   call dein#add('floobits/floobits-neovim')
@@ -330,86 +331,6 @@
   set signcolumn=yes
   "let g:gitgutter_sign_column_always = 1
 " }}}
-" NERDTree ------------------------------------------------------------------{{{
-
-  let g:vimfiler_ignore_pattern = ""
-  " map <silent> - :VimFiler<CR>
-	let g:vimfiler_tree_leaf_icon = ''
-	let g:vimfiler_tree_opened_icon = ''
-	let g:vimfiler_tree_closed_icon = ''
-	let g:vimfiler_file_icon = ''
-	let g:vimfiler_marked_file_icon = '*'
-  let g:vimfiler_expand_jump_to_first_child = 0
-  " let g:vimfiler_as_default_explorer = 1
-  call unite#custom#profile('default', 'context', {
-              \'direction': 'botright',
-              \ })
-  call vimfiler#custom#profile('default', 'context', {
-              \ 'explorer' : 1,
-              \ 'winwidth' : 35,
-              \ 'winminwidth' : 35,
-              \ 'toggle' : 1,
-              \ 'auto_expand': 0,
-              \ 'parent': 1,
-              \ 'explorer_columns': 'devicons:git',
-              \ 'status' : 0,
-              \ 'safe' : 0,
-              \ 'split' : 1,
-              \ 'hidden': 1,
-              \ 'no_quit' : 1,
-              \ 'force_hide' : 0,
-              \ })
-  augroup vfinit
-  autocmd FileType vimfiler call s:vimfilerinit()
-  augroup END
-  function! s:vimfilerinit()
-      set nonumber
-      set norelativenumber
-      nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
-            \ "\<Plug>(vimfiler_expand_tree)",
-            \ "\<Plug>(vimfiler_edit_file)"
-            \)
-      nmap <silent> m :call NerdUnite()<cr>
-      nmap <silent> r <Plug>(vimfiler_redraw_screen)
-  endf
-  " let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\)$'
-  let g:webdevicons_enable_vimfiler = 0
-  let g:vimfiler_no_default_key_mappings=1
-  function! NerdUnite() abort "{{{
-    let marked_files =  vimfiler#get_file(b:vimfiler)
-    call unite#start(['nerd'], {'file': marked_files})
-	endfunction "}}}
-
-  map <silent> - :NERDTreeToggle<CR>
-  augroup ntinit
-  autocmd FileType nerdtree call s:nerdtreeinit()
-  augroup END
-  function! s:nerdtreeinit()
-      nunmap <buffer> K
-      nunmap <buffer> J
-  endf
-  let NERDTreeShowHidden=0
-  let NERDTreeHijackNetrw=0
-  let NERDTreeNaturalSort=1
-  let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-  let g:NERDTreeWinSize=45
-  let g:NERDTreeAutoDeleteBuffer=1
-  let g:WebDevIconsOS = 'Darwin'
-  let NERDTreeMinimalUI=1
-  let NERDTreeCascadeSingleChildDir=1
-  let g:NERDTreeHeader = 'hello'
-
-
-" let g:webdevicons_conceal_nerdtree_brackets = 0
-  " let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-  " 
-  let g:NERDTreeShowIgnoredStatus = 0
-  " let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 1
-  " let g:NERDTreeDirArrows = 1
-  let g:NERDTreeDirArrowExpandable = ''
-  let g:NERDTreeDirArrowCollapsible = ''
-  let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-"}}}
 " Nvim terminal -------------------------------------------------------------{{{
 
   au BufEnter * if &buftype == 'terminal' | :startinsert | endif
@@ -761,3 +682,33 @@ autocmd BufWinLeave * call clearmatches()
 " autocmd InsertEnter * match TheInt /Int/
 " autocmd InsertLeave * match TheInt /Int/
 " autocmd BufWinLeave * call clearmatches()
+"" Opens the nnn window in a split
+" nnn config
+"
+" NNN filepicker -----------------------------------------------------------{{{
+map <silent> - :NnnPicker<CR>
+let g:nnn#layout = 'new' " or vnew, tabnew etc.
+
+" Or pass a dictionary with window size
+let g:nnn#layout = { 'left': '~20%' } " or right, up, down
+
+" Floating window (neovim)
+function! s:layout()
+  let buf = nvim_create_buf(v:false, v:true)
+
+  let height = &lines - (float2nr(&lines / 3))
+  let width = float2nr(&columns - (&columns * 2 / 3))
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': 2,
+        \ 'col': 8,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+endfunction
+let g:nnn#layout = 'call ' . string(function('<SID>layout')) . '()'
+nnoremap <leader>n :NnnPicker '%:p:h'<CR>
+"}}}
