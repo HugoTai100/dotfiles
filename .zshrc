@@ -116,7 +116,9 @@ function jobgit(){
     git config user.name hypertai
     git config user.email hugo.tai101@gmail.com
 }
-export EDITOR="nvim -u ~/.config/nvim_back/basic.vim"
+alias v="nvim"
+alias nv="nvim -u ~/.config/nvim/basic.vim"
+export EDITOR="nvim -u ~/.config/nvim/basic.vim"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -124,10 +126,19 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias python=python3
 export PATH="$PATH":"$HOME/.pub-cache/bin:/Library/TeX/texbin"
 alias n=nnn
-alias nv="nvim -u ~/.config/nvim_back/basic.vim"
 
 
 # Load pyenv automatically by appending
 # the following to ~/.zshrc:
 
 eval "$(pyenv init -)"
+function fyp()
+{
+    cd ~/flutter.docset/Contents/Resources/Documents/doc
+}
+#
+#  echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.zshrc
+#
+#For compilers to find llvm you may need to set:
+#  export LDFLAGS="-L/usr/local/opt/llvm/lib"
+#  export CPPFLAGS="-I/usr/local/opt/llvm/include"
