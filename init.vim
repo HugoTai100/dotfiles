@@ -8,26 +8,17 @@
     call dein#add('Shougo/dein.vim')
     call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
     call dein#add('mcchrish/nnn.vim') "nnn file manager
-    call dein#add('easymotion/vim-easymotion') "vim easymotion
     call dein#add('haya14busa/dein-command.vim')
 " call dein#add('lervag/vimtex')
+"
     call dein#add('vim-airline/vim-airline')
-    call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('tyrannicaltoucan/vim-quantum')
     call dein#add('Shougo/denite.nvim')
-
     call dein#add('vim-scripts/SyntaxRange')
-    call dein#add('MartinLafreniere/vim-PairTools')
     call dein#add('Shougo/unite.vim')
-    call dein#add('sjl/vitality.vim')
     call dein#add('ryanoasis/vim-devicons')
     call dein#add('hzchirs/vim-material')
-" google auto format code
-" Add maktaba and codefmt to the runtimepath.
-" (The latter must be installed before it can be used.)
-" call dein#add('google/vim-maktaba')
-" call dein#add('google/vim-codefmt')
-" Also add Glaive, which is used to configure codefmt's maktaba flags. See
-
+    call dein#add('jiangmiao/auto-pairs')
     if dein#check_install()
         call dein#install()
         let pluginsExist=1
@@ -41,7 +32,6 @@
 " Neovim Settings
     set scrolloff=99
     set termguicolors
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     set clipboard+=unnamedplus
     set pastetoggle=<f6>
     set nopaste
@@ -158,7 +148,9 @@
 "}}}"
 " Themes, Commands, etc  ----------------------------------------------------{{{
     syntax on
+    let g:quantum_italics=1
     set background=dark
+    let g:airline_theme='material'
     colorscheme vim-material
 "}}}
 " MarkDown ------------------------------------------------------------------{{{
@@ -195,55 +187,6 @@
     autocmd FileType c nnoremap <buffer> <F9> :te gcc % && ./a.out<cr>
     autocmd FileType go nnoremap <buffer> <F9> :te go run %<cr>
 " }}}
-" Fold, gets it's own section  ----------------------------------------------{{{
-
-    function! MyFoldText() " {{{
-        let line = getline(v:foldstart)
-        let nucolwidth = &fdc + &number * &numberwidth
-        let windowwidth = winwidth(0) - nucolwidth - 3
-        let foldedlinecount = v:foldend - v:foldstart
-
-        " expand tabs into spaces
-        let onetab = strpart('          ', 0, &tabstop)
-        let line = substitute(line, '\t', onetab, 'g')
-
-        let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-        " let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - len('lines')
-        " let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - len('lines   ')
-        let fillcharcount = windowwidth - len(line)
-        " return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . ' Lines'
-        return line . '…' . repeat(" ",fillcharcount)
-    endfunction " }}}
-
-    set foldtext=MyFoldText()
-
-    autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-    autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-
-    autocmd FileType vim setlocal fdc=1
-    set foldlevel=99
-
-    " Space to toggle folds.
-    nnoremap <Space> za
-    vnoremap <Space> za
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType vim setlocal foldlevel=0
-
-    autocmd FileType javascript,html,css,scss,typescript setlocal foldlevel=99
-
-    autocmd FileType css,scss,json setlocal foldmethod=marker
-    autocmd FileType css,scss,json setlocal foldmarker={,}
-
-    autocmd FileType coffee setl foldmethod=indent
-    let g:xml_syntax_folding = 1
-    autocmd FileType xml setl foldmethod=syntax
-
-    autocmd FileType html setl foldmethod=expr
-    autocmd FileType html setl foldexpr=HTMLFolds()
-
-    autocmd FileType javascript,typescript,json setl foldmethod=syntax
-
-" }}}
 " Git -----------------------------------------------------------------------{{{
     set signcolumn=yes
     "let g:gitgutter_sign_column_always = 1
@@ -273,7 +216,6 @@
     let g:airline#extensions#neomake#error_symbol='• '
     let g:airline#extensions#neomake#warning_symbol='•  '
     let g:airline_symbols.branch = ''
-    let g:airline_theme='material'
     cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
     tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
     nmap <leader>t :term<cr>
@@ -477,3 +419,4 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+highlight clear SignColumn
