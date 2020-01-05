@@ -142,3 +142,4 @@ function fyp()
 #For compilers to find llvm you may need to set:
 #  export LDFLAGS="-L/usr/local/opt/llvm/lib"
 #  export CPPFLAGS="-I/usr/local/opt/llvm/include"
+NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"

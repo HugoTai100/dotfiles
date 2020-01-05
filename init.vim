@@ -19,6 +19,7 @@
     call dein#add('ryanoasis/vim-devicons')
     call dein#add('hzchirs/vim-material')
     call dein#add('jiangmiao/auto-pairs')
+    call dein#add('ianding1/leetcode.vim')
     if dein#check_install()
         call dein#install()
         let pluginsExist=1
@@ -207,6 +208,11 @@
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ' '
+    let g:airline_right_alt_sep = ' '
+
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#mike#enabled = 0
     set hidden
@@ -313,19 +319,20 @@ map <silent> - :NnnPicker<CR>
 let g:nnn#layout = 'new' " or vnew, tabnew etc.
 
 " Or pass a dictionary with window size
-let g:nnn#layout = { 'left': '~20%' } " or right, up, down
+let g:nnn#layout = { 'left': '~50%' } " or right, up, down
 
 " Floating window (neovim)
 function! s:layout()
     let buf = nvim_create_buf(v:false, v:true)
 
-    let height = &lines - (float2nr(&lines / 3))
-    let width = float2nr(&columns - (&columns * 2 / 3))
+    let height = &lines - float2nr(&lines / 9)
+    let width = float2nr(&columns * 2 / 5)
+    let col = float2nr(&columns * 2 / 3)
 
     let opts = {
           \ 'relative': 'editor',
           \ 'row': 2,
-          \ 'col': 8,
+          \ 'col': col,
           \ 'width': width,
           \ 'height': height
           \ }
