@@ -769,9 +769,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 498 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>310 38 400 422 0 0 1920 1057 </string>
+	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 490 1920 567 0 0 1920 1057 </string>
+	<string>0 7 1920 1050 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>0 7 1920 1050 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -937,12 +937,16 @@
 			<true/>
 			<key>Background Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.16862745583057404</real>
+				<real>0.21785774829999999</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.14901961386203766</real>
+				<real>0.19688120479999999</real>
 				<key>Red Component</key>
-				<real>0.10980392247438431</real>
+				<real>0.14950475099999999</real>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<true/>
@@ -980,7 +984,7 @@
 			<key>Blur</key>
 			<false/>
 			<key>Blur Radius</key>
-			<real>30</real>
+			<real>0.10000000000000001</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -2410,7 +2414,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>599739077.55872202</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>283</integer>
+	<integer>291</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3191,16 +3195,16 @@
 	</dict>
 	<key>NoSyncSearchHistory2</key>
 	<array>
-		<string>name</string>
-		<string>rootless</string>
-		<string>voodoo</string>
-		<string>voodoop</string>
-		<string>voodooi2c</string>
-		<string>Grrr</string>
-		<string>ru1</string>
-		<string>av1</string>
-		<string>nug.pdf</string>
-		<string>ug.pdf</string>
+		<string>power</string>
+		<string>=all</string>
+		<string>all</string>
+		<string>Fall</string>
+		<string>F=all</string>
+		<string>wl0</string>
+		<string>wl1_country_code</string>
+		<string>wl1_TxPower</string>
+		<string>wl0_TxPower</string>
+		<string>wl_TxPower</string>
 	</array>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
 	<real>592314102.17597401</real>
@@ -3340,7 +3344,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-01-03T16:37:49Z</date>
+	<date>2020-01-09T09:55:23Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>

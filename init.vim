@@ -20,6 +20,8 @@
     call dein#add('hzchirs/vim-material')
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('ianding1/leetcode.vim')
+    call dein#add('dart-lang/dart-vim-plugin')
+
     if dein#check_install()
         call dein#install()
         let pluginsExist=1

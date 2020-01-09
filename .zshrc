@@ -106,7 +106,7 @@ export NNN_OPENER=mpv
 export NNN_PLUG='q:_qlmanage -p $nnn;o:_open $nnn'
 # remove vim edit mode delay to 10ms
 KEYTIMEOUT=0
-export PATH="/Users/his/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Applications/VMware Fusion.app/Contents/Public:/Users/his/flutter/bin"
+export PATH="/Users/his/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Applications/VMware Fusion.app/Contents/Public:/Users/his/AAA.noindex/flutter/bin"
 
 
 eval "$(direnv hook zsh)"
@@ -118,7 +118,8 @@ function jobgit(){
 }
 alias v="nvim"
 alias nv="nvim -u ~/.config/nvim/basic.vim"
-export EDITOR="nvim -u ~/.config/nvim/basic.vim"
+# export EDITOR="nvim -u ~/.config/nvim/basic.vim"
+export EDITOR="nvim"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -134,7 +135,10 @@ alias n=nnn
 eval "$(pyenv init -)"
 function fyp()
 {
+    oldpath=`pwd`
     cd ~/flutter.docset/Contents/Resources/Documents/doc
+    python -m http.server &
+    cd $oldpath
 }
 #
 #  echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.zshrc
