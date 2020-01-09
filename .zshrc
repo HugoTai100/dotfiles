@@ -1,9 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+ZSH_DISABLE_COMPFIX=true
 # Path to your oh-my-zsh installation.
 export LC_ALL=en_US.UTF-8
-export ZSH="/Users/his/.oh-my-zsh"
+export ZSH="/Users/ahkuser.noindex/.oh-my-zsh"
 fpath+=("$HOME/.oh-my-zsh/themes/pure")
 autoload -U promptinit; promptinit
 # Set name of the theme to load --- if set to "random", it will
@@ -106,7 +106,7 @@ export NNN_OPENER=mpv
 export NNN_PLUG='q:_qlmanage -p $nnn;o:_open $nnn'
 # remove vim edit mode delay to 10ms
 KEYTIMEOUT=0
-export PATH="/Users/his/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Applications/VMware Fusion.app/Contents/Public:/Users/his/AAA.noindex/flutter/bin"
+export PATH="/Users/ahkuser.noindex/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Applications/VMware Fusion.app/Contents/Public:/Users/ahkuser.noindex/flutter/bin"
 
 
 eval "$(direnv hook zsh)"
