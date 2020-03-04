@@ -1,59 +1,70 @@
-" Setup dein  ---------------------------------------------------------------{{{
-    if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
-        call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
-        call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
-    endif
-    set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
-    call dein#begin(expand('~/.config/nvim'))
-    call dein#add('Shougo/dein.vim')
-    call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
-    call dein#add('mcchrish/nnn.vim') "nnn file manager
-    call dein#add('haya14busa/dein-command.vim')
-" call dein#add('lervag/vimtex')
-"
-    call dein#add('vim-airline/vim-airline')
-    call dein#add('tyrannicaltoucan/vim-quantum')
-    call dein#add('Shougo/denite.nvim')
-    call dein#add('vim-scripts/SyntaxRange')
-    call dein#add('Shougo/unite.vim')
-    call dein#add('ryanoasis/vim-devicons')
-    call dein#add('hzchirs/vim-material')
-    call dein#add('jiangmiao/auto-pairs')
-    call dein#add('ianding1/leetcode.vim')
-    call dein#add('dart-lang/dart-vim-plugin')
+let mapleader = ","
+set scrolloff=99
+set termguicolors
+set clipboard+=unnamedplus
+set pastetoggle=<f6>
+set nopaste
+set noshowmode
+set noswapfile
+filetype on
+set number
+set relativenumber
+set numberwidth=1
+set tabstop=4 shiftwidth=4 expandtab
+set conceallevel=0
+set virtualedit=
+set wildmenu
+set laststatus=2
+set wrap linebreak nolist
+set wildmode=full
+set autoread
+vmap < <gv
+vmap > >gv
+nnoremap <leader>d "_d
+nnoremap <leader>w :w<cr>
+set clipboard+=unnamedplus
+if !exists('g:vscode')
+"" Setup dein  ---------------------------------------------------------------{{{
+  if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
+      call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
+      call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
+  endif
+  set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
+  call dein#begin(expand('~/.config/nvim'))
+  call dein#add('Shougo/dein.vim')
+  call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+  call dein#add('mcchrish/nnn.vim') "nnn file manager
+  call dein#add('haya14busa/dein-command.vim')
+  call dein#add('lervag/vimtex')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('tyrannicaltoucan/vim-quantum')
+  call dein#add('Shougo/denite.nvim')
+  call dein#add('vim-scripts/SyntaxRange')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('ryanoasis/vim-devicons')
+  call dein#add('hzchirs/vim-material')
+  call dein#add('jiangmiao/auto-pairs')
+  call dein#add('ianding1/leetcode.vim')
+  call dein#add('dart-lang/dart-vim-plugin')
+  call dein#add('itchyny/calendar.vim')
+  call dein#add('vim-scripts/VimIM')
 
-    if dein#check_install()
-        call dein#install()
-        let pluginsExist=1
-    endif
+  if dein#check_install()
+      call dein#install()
+      let pluginsExist=1
+  endif
 
-    call dein#end()
-    filetype plugin indent on
+  call dein#end()
+  filetype plugin indent on
 
 " }}}
 " System Settings  ----------------------------------------------------------{{{
 " Neovim Settings
-    set scrolloff=99
-    set termguicolors
-    set clipboard+=unnamedplus
-    set pastetoggle=<f6>
-    set nopaste
-    set noshowmode
-    set noswapfile
-    filetype on
-    set number
-    set relativenumber
-    set numberwidth=1
-    set tabstop=4 shiftwidth=4 expandtab
-    set conceallevel=0
-    set virtualedit=
-    set wildmenu
-    set laststatus=2
-    set wrap linebreak nolist
-    set wildmode=full
-    set autoread
-" leader is ,
-    let mapleader = ','
+    if exists('+termguicolors')
+        let &t_8f = "\[38;2;%lu;%lu;%lum"
+        let &t_8b = "\[48;2;%lu;%lu;%lum"
+        set termguicolors
+    endif
     set undofile
     set undodir="$HOME/.VIM_UNDO_FILES"
 " Remember cursor position between vim sessions
@@ -123,12 +134,8 @@
     " my mappings
     nnoremap _ :-tabnext<cr>
     nnoremap + :+tabnext<cr>
-    nnoremap <leader>d "_d
-    nnoremap <leader>w :w<cr>
 
 " Align blocks of text and keep them selected
-    vmap < <gv
-    vmap > >gv
     nnoremap <leader>d "_d
     vnoremap <leader>d "_d
     vnoremap <c-/> :TComment<cr>
@@ -210,10 +217,6 @@
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ' '
-    let g:airline_right_alt_sep = ' '
 
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#mike#enabled = 0
@@ -302,12 +305,12 @@ function! UpdateSkim(status)
 	endif
 endfunction
 " Show trailing whitespace:
-highlight ExtraWhitespace ctermbg=red guibg=red
-highlight TheInt ctermbg=red guibg=green
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"highlight TheInt ctermbg=red guibg=green
+"autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+"autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+"autocmd BufWinLeave * call clearmatches()
 
 " autocmd BufWinEnter * match TheInt /Int/
 " autocmd InsertEnter * match TheInt /Int/
@@ -429,3 +432,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 highlight clear SignColumn
+
+autocmd FileType dart setlocal shiftwidth=2 softtabstop=2 expandtab
+let g:calendar_frame = 'unicode'
+endif
