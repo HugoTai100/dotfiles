@@ -11,7 +11,7 @@ ZSH_DISABLE_COMPFIX=true
 # Path to your oh-my-zsh installation.
 [[ $TMUX != "" ]] && export TERM="screen-256color"
 export LC_ALL=en_US.UTF-8
-export ZSH="/Users/ahkuser.noindex/.oh-my-zsh"
+export ZSH="/Users/his/.oh-my-zsh"
 fpath+=("$HOME/.oh-my-zsh/themes/pure")
 autoload -U promptinit; promptinit
 # Set name of the theme to load --- if set to "random", it will
@@ -171,3 +171,4 @@ complete -o nospace -C /usr/local/bin/mc mc
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/usr/local/opt/node@10/bin:$PATH"
