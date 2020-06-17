@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode zsh-syntax-highlighting osx gpg-agent jsontools globalias)
+plugins=(git vi-mode osx gpg-agent jsontools globalias)
 #  
 
 source $ZSH/oh-my-zsh.sh
@@ -110,12 +110,12 @@ source $ZSH/oh-my-zsh.sh
 #
 # GPG settings
 export NNN_OPENER=mpv
-export NNN_PLUG='q:_qlmanage -p $nnn;o:_open $nnn;v:_nvim $nnn;u:_7z x $nnn;d:dragdrop'
+export NNN_PLUG='q:_qlmanage -p $nnn;o:_open $nnn;v:_nvim $nnn;u:_7z x $nnn'
 export NNN_COLORS=4231
 
 # remove vim edit mode delay to 10ms
 KEYTIMEOUT=0
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Users/his/flutter/bin:$HOME/.pub-cache/bin:/Library/TeX/texbin"
+export PATH="/Applications/VMware Fusion.app/Contents/Public:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Users/his/flutter/bin:$HOME/.pub-cache/bin:/Library/TeX/texbin"
 
 eval "$(direnv hook zsh)"
 
@@ -131,13 +131,11 @@ export EDITOR="nvim"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-alias python=python3
 alias n=nnn
 
 # Load pyenv automatically by appending
 # the following to ~/.zshrc:
 
-eval "$(pyenv init -)"
 function fyp()
 {
     oldpath=`pwd` cd ~/flutter.docset/Contents/Resources/Documents/doc
@@ -172,3 +170,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/usr/local/opt/node@10/bin:$PATH"
+NO_PROXY=localhost,127.0.0.1
+
+# HSTR configuration - add this to ~/.zshrc
+#alias h=hstr                     # h to be alias for hstr
+setopt histignorespace           # skip cmds w/ leading space from history
+export HSTR_CONFIG=hicolor       # get more colors
+bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+
+ export PATH="$PATH:`pwd`/flutter/bin"
+
+
+export SPARK_HOME="/Users/his/spark-2.4.5-bin-hadoop2.7/"
+export PATH="$SPARK_HOME/bin:$PATH"

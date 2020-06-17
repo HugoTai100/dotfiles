@@ -42,7 +42,7 @@ if !exists('g:vscode')
   call dein#add('vim-scripts/SyntaxRange')
   call dein#add('Shougo/unite.vim')
   call dein#add('ryanoasis/vim-devicons')
-  call dein#add('hzchirs/vim-material')
+  call dein#add('tomasiser/vim-code-dark')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('ianding1/leetcode.vim')
   call dein#add('dart-lang/dart-vim-plugin')
@@ -160,8 +160,8 @@ if !exists('g:vscode')
     syntax on
     let g:quantum_italics=1
     set background=dark
-    let g:airline_theme='material'
-    colorscheme vim-material
+    let g:airline_theme='codedark'
+    colorscheme codedark
 "}}}
 " MarkDown ------------------------------------------------------------------{{{
 
