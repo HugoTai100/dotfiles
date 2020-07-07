@@ -3198,6 +3198,7 @@
 		<string>3.3.8</string>
 		<string>3.3.11</string>
 		<string>3.3.7</string>
+		<string>3.3.12</string>
 		<string>3.3.6</string>
 	</array>
 	<key>NoSyncBFPFavorites</key>
@@ -3239,7 +3240,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>599739077.55872202</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>491</integer>
+	<integer>527</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -4168,11 +4169,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-06-13T11:17:20Z</date>
+	<date>2020-07-07T11:08:49Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
-	<integer>8625876</integer>
+	<integer>2925642006</integer>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>Secure Input</key>
@@ -4204,7 +4205,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.11</string>
+	<string>3.3.12</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
