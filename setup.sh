@@ -1,3 +1,4 @@
-ln -s ~/dotfiles/init.vim ~/.config/nvim/init.vim
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s init.vim ~/.config/nvim/init.vim
+ln -s tmux.conf ~/.tmux.conf
+ln -s .zshrc ~/.zshrc
+ln -s .p10k.zsh ~/.p10k.zsh
