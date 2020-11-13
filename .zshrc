@@ -183,3 +183,10 @@ bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode che
 
 export SPARK_HOME="/Users/his/spark-2.4.5-bin-hadoop2.7/"
 export PATH="$SPARK_HOME/bin:$PATH"
+alias lg=lazygit
+
+
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/usr/local/share/dotnet"
+export PATH="$PATH:/Users/his/.dotnet/tools"
